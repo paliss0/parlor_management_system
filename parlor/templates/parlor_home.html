@@ -7,9 +7,40 @@
     <title>Parlor Home</title>
 </head>
 <body>
-    <form action="">
-        <input type="text" name="search_query">
-        <input type="submit" value="Search">
-    </form>
+    <header>
+        <ul>
+            <li>
+                <form action="" method="GET">
+                    <input type="text" name="search_query">
+                    <input type="submit" value="Search">
+                </form>
+            </li>
+            <li>
+                <a href="./add-parlor/">Add New Parlor</a>
+            </li>
+        </ul>
+
+
+    </header>
+
+
+    <div>
+        {%for parlor in parlors%}
+            <div>
+                <p>================================</p>
+
+                <p>Parlor Name:{{parlor.parlor_name}}</p>
+                <p>Parlor Description:{{parlor.parlor_description}}</p>
+                <p>Address:{{parlor.address}}</p>
+                <p>Price:{{parlor.price}}</p>
+                <p>
+                    <a href="./update-parlor/{{parlor.id}}">Edit</a>
+                    <a href="./delete-parlor/{{parlor.id}}">Delete</a>
+                </p>
+
+                <p>================================</p>
+            </div>
+        {%endfor%}
+    </div>
 </body>
 </html>

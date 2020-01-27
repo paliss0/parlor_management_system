@@ -8,20 +8,26 @@
 </head>
 <body>
 
-    {%if add_new_parlor%}
-    <!-- add new parlor -->
-    <form action="" method="post">
-        {%csrf_token%}
-        <span>Parlor Name:</span><input type="text" name="parlor_name" placeholder="Enter Parlor Name"><br><br>
-        <span>Parlor Description:</span><input type="text" name="parlor_description" placeholder="Enter Parlor Description"><br><br>
-        <span>Address:</span><input type="text" name="address" placeholder="Enter Parlor Address"><br><br>
-        <span>Price:</span><input type="number" name="price" placeholder="Enter Price"><br><br>
-        <input type="submit" value="Save Parlor">
+    {%if update_parlor%}
+        <!-- update parlor -->
+        <form action="" method="post">
     {%else%}
-    <!-- update existing parlor -->
-        
-    <form action="" method="post">
+        <!-- add parlor -->
+        <form action="" method="post">
     {%endif%}
+
+
+        {%csrf_token%}
+
+        <span>Parlor Name:</span><input type="text" {%if update_parlor%}value="{{parlor.parlor_name}}"{%endif%} name="parlor_name" placeholder="Enter Parlor Name"><br><br>
+        <span>Parlor Description:</span>
+            <textarea name="parlor_description"  cols="30" rows="10"  placeholder="Enter Parlor Description">
+                {%if update_parlor%}{{parlor.parlor_description}}{%endif%}
+            </textarea><br><br>
+        <span>Address:</span><input type="text" name="address" {%if update_parlor%}value="{{parlor.address}}"{%endif%} placeholder="Enter Parlor Address"><br><br>
+        <span>Price:</span><input type="number" name="price" {%if update_parlor%}value="{{parlor.price}}"{%endif%} placeholder="Enter Price"><br><br>
+        
+        <input type="submit"  value="Save Parlor">
     </form>
 </body>
 </html>
