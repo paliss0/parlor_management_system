@@ -27,8 +27,11 @@
     <div>
         {%for parlor in parlors%}
             <div>
-                <p>================================</p>
 
+                <p>================================</p>
+                <div>
+                    <img src="{{parlor.parlor_logo}}" alt="{{parlor.parlor_name}}" height="50" width="50">
+                </div>
                 <p>Parlor Name:{{parlor.parlor_name}}</p>
                 <p>Parlor Description:{{parlor.parlor_description}}</p>
                 <p>Address:{{parlor.address}}</p>

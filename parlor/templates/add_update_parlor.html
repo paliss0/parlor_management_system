@@ -10,15 +10,15 @@
 
     {%if update_parlor%}
         <!-- update parlor -->
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data">
     {%else%}
         <!-- add parlor -->
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data">
     {%endif%}
 
 
         {%csrf_token%}
-
+        <span>Parlor logo: <input type="file" name="parlor_logo"></span><br><br>
         <span>Parlor Name:</span><input type="text" {%if update_parlor%}value="{{parlor.parlor_name}}"{%endif%} name="parlor_name" placeholder="Enter Parlor Name"><br><br>
         <span>Parlor Description:</span>
             <textarea name="parlor_description"  cols="30" rows="10"  placeholder="Enter Parlor Description">
