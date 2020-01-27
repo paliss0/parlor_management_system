@@ -10,11 +10,17 @@
 
     {%if add_new_parlor%}
     <!-- add new parlor -->
-    <form action="./add-parlor" method="post">
+    <form action="" method="post">
+        {%csrf_token%}
+        <span>Parlor Name:</span><input type="text" name="parlor_name" placeholder="Enter Parlor Name"><br><br>
+        <span>Parlor Description:</span><input type="text" name="parlor_description" placeholder="Enter Parlor Description"><br><br>
+        <span>Address:</span><input type="text" name="address" placeholder="Enter Parlor Address"><br><br>
+        <span>Price:</span><input type="number" name="price" placeholder="Enter Price"><br><br>
+        <input type="submit" value="Save Parlor">
     {%else%}
     <!-- update existing parlor -->
         
-    <form action="./update-parlor" method="post">
+    <form action="" method="post">
     {%endif%}
     </form>
 </body>
