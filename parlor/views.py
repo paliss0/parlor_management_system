@@ -5,6 +5,9 @@ from django.core.files.storage import FileSystemStorage
 
 def get_parlor_home(req):
 
+    if not req.user.is_authenticated:
+        return redirect('login')
+        
     all_parlor=Parlor.objects.all()
 
     if 'search_query' in req.GET:

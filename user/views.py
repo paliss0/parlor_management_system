@@ -13,6 +13,7 @@ def user_login(req):
         user=authenticate(username=username,password=password)
 
         if user is not None:
+            login(req,user)
             return redirect('parlor_home')
         else:
             return redirect('login')
@@ -32,5 +33,5 @@ def sign_up(req):
 
 def user_logout(req):
     logout(req)
-    redirect ('login')
+    return redirect ('login')
     
