@@ -1,6 +1,9 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,logout,login
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,Permission
+from django.contrib.contenttypes.models import ContentType
+from parlor.models import Parlor
+ 
 # Create your views here.
 
 def user_login(req):
@@ -29,6 +32,16 @@ def sign_up(req):
         user=User.objects.create_user(username=username,email=email,password=password)
         user.save()
 
+        content_type=ContentType.objects.get_for_model(Parlor)
+
+        #view permission
+        permission=Permission.objects.get(
+            codename='view_parlor',
+            content_type=content_type
+            
+        )
+
+        user.user_permissions.add(permission)
         return redirect('login')
 
 def user_logout(req):

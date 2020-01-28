@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.http import HttpResponse
 from .models import Parlor
 from django.core.files.storage import FileSystemStorage
 
@@ -23,6 +24,9 @@ def get_parlor_home(req):
     return render(req,'parlor_home.html',context=context)
 
 def get_add_parlor(req):
+    if not req.user.has_perm('add_parlor'):
+        return HttpResponse("Cannot Add")
+
     if req.method=="GET":
         context={
             "page_title":"Add Parlor"
@@ -51,6 +55,10 @@ def get_add_parlor(req):
 
 
 def get_update_parlor(req,ID):
+    print(req.user.has_perm('change_parlor'))
+    if not req.user.has_perm('change_parlor'):
+        return HttpResponse("Cannot Update")
+    
     current_parlor=Parlor.objects.get(id=ID)
 
     if req.method=="GET":
@@ -88,6 +96,9 @@ def get_update_parlor(req,ID):
 
 
 def delete_parlor(req,ID):
+    if not req.user.has_perm('delete_parlor'):
+        return HttpResponse("Cannot Delete")
+
     current_parlor=Parlor.objects.get(id=ID)
     current_parlor.delete()
     return redirect("parlor_home")
