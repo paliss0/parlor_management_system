@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{page_title}}</title>
+</head>
+<body>
+
+    {%if update_parlor%}
+        <!-- update parlor -->
+        <form action="" method="post" enctype="multipart/form-data">
+    {%else%}
+        <!-- add parlor -->
+        <form action="" method="post" enctype="multipart/form-data">
+    {%endif%}
+
+
+        {%csrf_token%}
+        <span>Parlor logo: <input type="file" name="parlor_logo"></span><br><br>
+        <span>Parlor Name:</span><input type="text" {%if update_parlor%}value="{{parlor.parlor_name}}"{%endif%} name="parlor_name" placeholder="Enter Parlor Name"><br><br>
+        <span>Parlor Description:</span>
+            <textarea name="parlor_description"  cols="30" rows="10"  placeholder="Enter Parlor Description">
+                {%if update_parlor%}{{parlor.parlor_description}}{%endif%}
+            </textarea><br><br>
+        <span>Address:</span><input type="text" name="address" {%if update_parlor%}value="{{parlor.address}}"{%endif%} placeholder="Enter Parlor Address"><br><br>
+        <span>Price:</span><input type="number" name="price" {%if update_parlor%}value="{{parlor.price}}"{%endif%} placeholder="Enter Price"><br><br>
+        
+        <input type="submit"  value="Save Parlor">
+    </form>
+</body>
+</html>

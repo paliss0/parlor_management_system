@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Parlor Home</title>
+</head>
+<body>
+    <header>
+        <ul>
+            <li>
+                <form action="" method="GET">
+                    <input type="text" name="search_query">
+                    <input type="submit" value="Search">
+                </form>
+            </li>
+            <li>
+                <a href="./add-parlor/">Add New Parlor</a>
+                <a href="/user/logout/">Logout</a>
+            </li>
+        </ul>
+
+
+    </header>
+
+
+    <div>
+        {%for parlor in parlors%}
+            <div>
+
+                <p>================================</p>
+                <div>
+                    <img src="{{parlor.parlor_logo}}" alt="{{parlor.parlor_name}}" height="50" width="50">
+                </div>
+                <p>Parlor Name:{{parlor.parlor_name}}</p>
+                <p>Parlor Description:{{parlor.parlor_description}}</p>
+                <p>Address:{{parlor.address}}</p>
+                <p>Price:{{parlor.price}}</p>
+                <p>
+                    <a href="./update-parlor/{{parlor.id}}">Edit</a>
+                    <a href="./delete-parlor/{{parlor.id}}">Delete</a>
+                </p>
+
+                <p>================================</p>
+            </div>
+        {%endfor%}
+    </div>
+</body>
+</html>
