@@ -76,3 +76,17 @@ def view_getByID_updateByID_deleteByID(req,ID):
                 "price":current_parlor.price
             }
         })
+
+def pagination(req,pageNo,items):
+    start=pageNo*items
+    end=start+items
+
+    if req.method=="GET":
+        db_parlors=Parlor.objects.all()
+        all_parlors=list(db_parlors.values())
+        print(all_parlors[start:end])
+        return JsonResponse({
+            "parlors":all_parlors[start:end]
+        })
+
+
