@@ -1,6 +1,5 @@
-import django.urls import path
-
-import .views import *
+from django.urls import path
+from .views import *
 
 urlpatterns=[
     path('parlor/',view_get_post_parlor),
