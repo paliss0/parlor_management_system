@@ -12,10 +12,10 @@ class Parlor(models.Model):
         return self.price>0
     
     def valid_name(self):
-        return self.parlor_name==""
+        return self.parlor_name!=""
 
 class ParlorUser(models.Model):
-    user=models.OneToOneField(User,on_delete=models.CASCADE)
+    user=models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
     address=models.TextField()
     phone=models.IntegerField()
 
@@ -24,15 +24,19 @@ class ParlorUser(models.Model):
 
 
 class ParlorEmployee(models.Model):
-    user=models.OneToOneField(User,on_delete=models.CASCADE)
+    user=models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
     address=models.TextField()
     phone=models.IntegerField()
     available_time=models.TextField()
 
     def count_appointments(self):
         return self.appointment_of.all().cout()
+    
+    def get_available_time(self):
+        return self.available_time
 
 class Appointment(models.Model):
+    id=models.IntegerField(primary_key=True)
     appointment_of=models.ManyToManyField(to=ParlorUser)
     appointment_for=models.ManyToManyField(to=ParlorEmployee)
     date=models.DateField(auto_now=True)
