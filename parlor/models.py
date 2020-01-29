@@ -36,7 +36,7 @@ class ParlorEmployee(models.Model):
         return self.available_time
 
 class Appointment(models.Model):
-    id=models.IntegerField(primary_key=True)
+    id=models.IntegerField(default=True,primary_key=True)
     appointment_of=models.ManyToManyField(to=ParlorUser)
     appointment_for=models.ManyToManyField(to=ParlorEmployee)
     date=models.DateField(auto_now=True)
