@@ -21,7 +21,7 @@ class ModelTestCase(TestCase):
 
         self.assertTrue(parlor_user.valid_phone())
 
-    
+    #test appointment not working
     def test_count_appointments(self):
         user=User.objects.create_user(username="ABC",email="abc@gmail.com",password="123456789")
         emp_user=User.objects.create_user(username="ABCD",email="abc@gmail.com",password="123456789")
