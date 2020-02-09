@@ -1,6 +1,5 @@
 from django.http import HttpResponse,JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from parlor.models import Parlor
 import json
 
 @csrf_exempt
@@ -78,6 +77,9 @@ def view_getByID_updateByID_deleteByID(req,ID):
         })
 
 def pagination(req,pageNo,items):
+    all_items=Parlor.objects.all()
+
+
     start=pageNo*items
     end=start+items
 
